@@ -13,7 +13,8 @@ RUN cd /root/source && ./build-rv32imac.sh
 
 FROM ubuntu:bionic
 MAINTAINER Xuejie Xiao <xxuejie@gmail.com>
-COPY --from=builder /root/riscv /root/riscv
-ENV RISCV /root/riscv
-ENV PATH "${PATH}:${RISCV}"
+COPY --from=builder /root/riscv /riscv
+RUN apt-get update && apt-get install -y device-tree-compiler && apt-get clean
+ENV RISCV /riscv
+ENV PATH "${PATH}:${RISCV}/bin"
 CMD ["riscv32-unknown-elf-gcc", "--version"]
