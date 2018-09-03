@@ -13,7 +13,7 @@ RUN cd /root/source && ./build-rv32imac.sh
 
 FROM ubuntu:bionic
 MAINTAINER Xuejie Xiao <xxuejie@gmail.com>
-COPY --from-builder /root/riscv /root/riscv
+COPY --from=builder /root/riscv /root/riscv
 ENV RISCV /root/riscv
 ENV PATH "${PATH}:${RISCV}"
 CMD ["riscv32-unknown-elf-gcc", "--version"]
