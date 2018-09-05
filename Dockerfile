@@ -11,7 +11,7 @@ ENV RISCV /root/riscv
 ADD files/build-rv32imac.sh /root/source/build-rv32imac.sh
 RUN cd /root/source && ./build-rv32imac.sh
 
-FROM ubuntu:bionic
+FROM buildpack-deps:bionic
 MAINTAINER Xuejie Xiao <xxuejie@gmail.com>
 COPY --from=builder /root/riscv /riscv
 RUN apt-get update && apt-get install -y device-tree-compiler && apt-get clean
