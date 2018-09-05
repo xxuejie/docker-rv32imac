@@ -14,7 +14,7 @@ RUN cd /root/source && ./build-rv32imac.sh
 FROM buildpack-deps:bionic
 MAINTAINER Xuejie Xiao <xxuejie@gmail.com>
 COPY --from=builder /root/riscv /riscv
-RUN apt-get update && apt-get install -y device-tree-compiler && apt-get clean
+RUN apt-get update && apt-get install -y git autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev libusb-1.0-0-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev device-tree-compiler pkg-config libexpat-dev && apt-get clean
 ENV RISCV /riscv
 ENV PATH "${PATH}:${RISCV}/bin"
 CMD ["riscv32-unknown-elf-gcc", "--version"]
